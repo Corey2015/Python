@@ -1,55 +1,61 @@
 # -*- coding: utf-8
 import requests
 from lxml import etree
+from Code.Spider import *
+import threading
+from queue import Queue
+import time
 
-class Spider(object):
-    def __init__(self, url, header={}):
-        self.url = url
-        if header == {}:
-            print("header is default")
-            self.header = {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"}
-        else:
-            self.header = header
+class SpiderMusic(Spider):
+    def __init__(self, url):
+        self.base_url = ""
+        super().__init__(url)
 
-    def _parse_url(self, method, data, proxies):
-        if method == "POST":
-            print("POST")
-            response = requests.post(self.url, data=data, headers=self.header, proxise=proxies)
-        else:
-            print("GET")
-            response = requests.get(self.url, headers=self.header,proxies = {})
-            print(response.status_code)
-        assert response.status_code == 200
-        return response.content.decode()
-
-    def parse_url(self, method="GET", data=None, proxies={}):
-        try:
-            result = self._parse_url(method, data=data, proxies=proxies)
-        except:
-            print("error")
-            result = None
-        return result
-
-    def save_file(self,path_file,file_content,mode = "w"):
-        with open(path_file,mode) as fp:
-            fp.write(file_content)
-            fp.close()
+    def get_url_list(self):
+        pass
 
 
 def main():
-    spider = Spider("https://music.163.com/discover/playlist")
+    # spider = SpiderMusic("https://music.163.com/discover/playlist")
+
+    spider = SpiderMusic("https://music.163.com/#/discover/playlist/?order=hot&limit=35&offset=70")
+    print(spider.url)
     html_str = spider.parse_url()
     xml_str = etree.HTML(html_str)
+    print(etree.tostring(xml_str).decode())
     music_list = xml_str.xpath("//ul[@id ='m-pl-container']/li")
-    #print(music_list)
+    #tmp_url = xml_str.xpath("//a[@class = 'zbtn znxt']/@href")[0]# if len(xml_str.xpath("//a[@class = 'zbtn znxt']/@href"))>0 else None
+    #print(tmp_url)
+    #next_url = "https://music.163.com/#{}".format(tmp_url) if tmp_url is not None else None
+    #print(next_url)
+    #spider.set_url(next_url)
+    # print(music_list)
+    music_list_url =[]
     for tmp in music_list:
         print(tmp.xpath("./p[@class = 'dec']/a/@title"))
+<<<<<<< HEAD
         #https://music.163.com/#/playlist?id=616305725
         print(tmp.xpath("./p[@class = 'dec']/a/@href"))
         print(tmp.xpath(".//a[@class ='nm nm-icn f-thide s-fc3' ]/text()"))
 
 
+=======
+        print("https://music.163.com/#{}".format(tmp.xpath("./p[@class = 'dec']/a/@href")[0]))
+        music_list_url.append("https://music.163.com/#{}".format(tmp.xpath("./p[@class = 'dec']/a/@href")[0]))
+        print(tmp.xpath(".//a[@class ='nm nm-icn f-thide s-fc3' ]/text()"))
+    #print(music_list_url)
+    #print(next_url)
+    time.sleep(2)
+    html_str = spider.parse_url()
+    xml_str = etree.HTML(html_str)
+    music_list = xml_str.xpath("//ul[@id ='m-pl-container']/li")
+    music_list_url = []
+    for tmp in music_list:
+        print(tmp.xpath("./p[@class = 'dec']/a/@title"))
+        print("https://music.163.com/#{}".format(tmp.xpath("./p[@class = 'dec']/a/@href")[0]))
+        music_list_url.append("https://music.163.com/#{}".format(tmp.xpath("./p[@class = 'dec']/a/@href")[0]))
+        print(tmp.xpath(".//a[@class ='nm nm-icn f-thide s-fc3' ]/text()"))
+>>>>>>> e2615c73b6f4319ec2f1b39f941694f535f32468
 
 if __name__ == "__main__":
     main()
