@@ -45,9 +45,10 @@ def main():
     #print(music_list)
     for tmp in music_list:
         print(tmp.xpath("./p[@class = 'dec']/a/@title"))
+        #https://music.163.com/#/playlist?id=616305725
         print(tmp.xpath("./p[@class = 'dec']/a/@href"))
         print(tmp.xpath(".//a[@class ='nm nm-icn f-thide s-fc3' ]/text()"))
-        
+
 
 
 if __name__ == "__main__":
