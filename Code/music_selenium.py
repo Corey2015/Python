@@ -28,7 +28,8 @@ class Spider():
                 #print(li.find_element_by_xpath(".//p[@class = 'dec']/a/").get_attribute("title"))
                 print(li.find_element_by_xpath(".//div/a").get_attribute("title"))
                 print(li.find_element_by_xpath(".//div/a").get_attribute("href"))
-        self.browser.quit()
+                print(li.find_element_by_xpath(".//a[@class ='nm nm-icn f-thide s-fc3']").text)
+        self.browser.close()
 
 
 

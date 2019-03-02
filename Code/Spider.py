@@ -7,13 +7,14 @@ class Spider(object):
         self.url = url
         if header == {}:
             print("header is default")
-            self.header = {
-                "Upgrade - Insecure - Requests": "1",
-                "Referer": " https://music.163.com/",
-                "User-Agent": " Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36", }
             # self.header = {
-            #     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36",
-            # }
+            #     "Upgrade - Insecure - Requests": "1",
+            #     "Referer": " https://music.163.com/",
+            #
+            #     "User-Agent": " Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36", }
+            self.header = {
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36",
+            }
         else:
             self.header = header
 
