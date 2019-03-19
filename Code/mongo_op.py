@@ -20,7 +20,7 @@ def main():
     my_mongo = mongoOP()
     my_mongo.insert({"name": "xiaowang", "age": 18})
     my_mongo.query({"name": "xiaowang"})
-    
+
 
 if __name__ == "__main__":
     main()
