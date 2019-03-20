@@ -8,10 +8,13 @@
 import scrapy
 
 
-class MyspiderItem(scrapy.Item):
+class YgspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    position = scrapy.Field()
+    title = scrapy.Field()
+    dept = scrapy.Field()
+    status = scrapy.Field()
+    url = scrapy.Field()
     location = scrapy.Field()
     data = scrapy.Field()
     pass

@@ -4,13 +4,8 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-from pymongo import MongoClient
-client = MongoClient()
-collection = client["test"]["hr"]
 
-class MyspiderPipeline(object):
+
+class YgspiderPipeline(object):
     def process_item(self, item, spider):
-        if 'hr' == spider.name:
-            print(item)
-            collection.insert(dict(item))
         return item

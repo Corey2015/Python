@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+from myspider.items import MyspiderItem
 
 class HrSpider(scrapy.Spider):
     name = 'hr'
@@ -11,8 +11,8 @@ class HrSpider(scrapy.Spider):
         tr_list = response.xpath("//table[@class = 'tablelist']/tr")
 
         for tr in tr_list[1:-1]:
-            item = {}
-            item["position"] = tr.xpath(".//a/text()").extract()
+            item = MyspiderItem()
+            item["position"] = tr.xpath(".//a/text()").extract_first()
             item["location"] = tr.xpath(".//td[4]/text()").extract_first()
             item["data"] = tr.xpath(".//td[5]/text()").extract_first()
             yield item
