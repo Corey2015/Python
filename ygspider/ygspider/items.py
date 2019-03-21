@@ -17,4 +17,5 @@ class YgspiderItem(scrapy.Item):
     url = scrapy.Field()
     location = scrapy.Field()
     data = scrapy.Field()
+    content = scrapy.Field()
     pass
