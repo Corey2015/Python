@@ -13,7 +13,7 @@ BOT_NAME = 'tieba'
 
 SPIDER_MODULES = ['tieba.spiders']
 NEWSPIDER_MODULE = 'tieba.spiders'
-
+LOG_LEVEL = "WARNING"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'tieba (+http://www.yourdomain.com)'

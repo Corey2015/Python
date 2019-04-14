@@ -25,5 +25,5 @@ git push -u origin master
 
 /github github Scrapy 通过POST请求模拟登录
 
-/tieba 贴吧爬虫 Scrapy版 抓图
+/tieba 贴吧爬虫 Scrapy版
 
