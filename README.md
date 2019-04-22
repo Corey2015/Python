@@ -27,3 +27,5 @@ git push -u origin master
 
 /tieba 贴吧爬虫 Scrapy版 抓图
 
+/jdbook 抓取京东图书
+
