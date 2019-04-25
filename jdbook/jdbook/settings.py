@@ -13,7 +13,11 @@ BOT_NAME = 'jdbook'
 
 SPIDER_MODULES = ['jdbook.spiders']
 NEWSPIDER_MODULE = 'jdbook.spiders'
-LOG_LEVEL ="WARNING"
+# LOG_LEVEL ="WARNING"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+SCHEDULER_PERSIST = True
+REDIS_URL = "redis://127.0.0.1:6379"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'
