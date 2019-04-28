@@ -13,7 +13,7 @@ BOT_NAME = 'jdbook'
 
 SPIDER_MODULES = ['jdbook.spiders']
 NEWSPIDER_MODULE = 'jdbook.spiders'
-# LOG_LEVEL ="WARNING"
+LOG_LEVEL ="WARNING"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 SCHEDULER_PERSIST = True

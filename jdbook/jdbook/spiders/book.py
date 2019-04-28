@@ -2,6 +2,7 @@
 import scrapy
 from copy import  deepcopy
 import json
+import re
 
 class BookSpider(scrapy.Spider):
     name = 'book'
@@ -40,8 +41,8 @@ class BookSpider(scrapy.Spider):
                 item["book_pub"] = "no more information"
             item["book_pub_data"]=li.xpath(".//div[@class = 'p-bookdetails']/span[@class = 'p-bi-date']/text()").extract_first().strip()
             item["book_url"]= "https:{}".format(li.xpath(".//div[@class='p-img']/a/@href").extract_first())
-            # yield scrapy.Request(
-            #     "https://p.3.cn/prices/mgets?skuIds=J_{}".format(item["book_sku"]),
+            if item["book_sku"] is None:
+                item["book_sku"] = re.findall(r"https://item.jd.com/(\d+).html", item["book_url"])[0]
             #     callback=self.parse_getprice,
             #     meta = {"item":deepcopy(item)}
             # )
