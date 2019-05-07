@@ -50,10 +50,29 @@ def temperature():
     plt.plot(x, y)
     plt.show()
 
+def friends():
+    myfont = font_manager.FontProperties(fname="/System/Library/Fonts/STHeiti Medium.ttc")
+    y_1 = [1, 0, 1, 1, 2, 4, 3, 2, 3, 4, 4, 5, 6, 5, 4, 3, 3, 1, 1, 1]
+    y_2 = [1, 0, 3, 1, 2, 2, 3, 3, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    x = range(11,31,1)
+    x_content = ["{}岁".format(i) for i in x]
+    plt.xticks(x,x_content,rotation = 45,fontproperties = myfont)
+    plt.yticks(y_1)
+    #绘制第一条数据线 图例描述为自己 线条颜色红色
+    plt.plot(x,y_1,label = "自己",color = 'red')
+    #绘制第二条数据线 图例描述为同桌 线条颜色蓝色
+    plt.plot(x,y_2,label = "同桌",color ='blue')
+    #显示图例，位置在右上方
+    plt.legend(prop = myfont,loc='upper right')
+    #绘制网格
+    plt.grid()
+    plt.show()
+
 if __name__ == "__main__":
     # main()
     #test()
-    temperature()
+    #temperature()
+    friends()
 
 
 
