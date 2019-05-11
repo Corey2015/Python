@@ -125,12 +125,34 @@ def barchartH():
     plt.barh( ytick,xtick, color="red")
     plt.show()
 
-def barcharttest():
+def barcharts():
+    barwidth = 0.2
     a = ["猩球崛起3：终极之战", "敦刻尔克", "蜘蛛侠：英雄归来", "战狼2"]
     b_16 = [15746, 312, 4497, 319]
     b_15 = [12357, 156, 2045, 168]
     b_14 = [2358, 399, 2358, 362]
-    myfont = font_manager.FontProperties(fname="/usr/share/fonts/truetype/arphic/ukai.ttc")
+    myfont = font_manager.FontProperties(fname="/System/Library/Fonts/STHeiti Medium.ttc")
+    #设置X坐标刻度
+    #[0,1,2,3]
+    x_14 = range(len(a))
+    #[0.2,1.2,2.2,3.2]
+    x_15 = [i+barwidth for i in x_14]
+    #[0.4,1.4,2.4,3.4]
+    x_16 = [i+barwidth*2 for i in x_14]
+    #设定刻度用x_15，并且将a的数据映射到坐标刻度
+    #3个条形图 X_15居中
+    plt.xticks(x_15,a,fontproperties = myfont)
+    #绘制14日的数据
+    plt.bar(x_14,b_14,width=barwidth,label = "14日")
+    # 绘制15日的数据
+    plt.bar(x_15,b_15,width=barwidth,label = "15日")
+    # 绘制16日的数据
+    plt.bar(x_16, b_16, width=barwidth,label = "16日")
+    #显示图标
+    plt.legend(prop = myfont)
+    #显示网格 透明度设置成0。3
+    plt.grid(alpha = 0.3)
+    plt.show()
 
 
 if __name__ == "__main__":
@@ -140,4 +162,4 @@ if __name__ == "__main__":
     # friends()
     # scatterpolt()
     #barchartH()
-    barcharttest()
+    barcharts()
