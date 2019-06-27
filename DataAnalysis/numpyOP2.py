@@ -4,6 +4,20 @@ from matplotlib import pyplot as plt
 
 file_path = '/Users/corey/Tmp/GB_video_data_numbers.csv'
 
+us_path = '/Users/corey/Tmp/US_video_data_numbers.csv'
+uk_path = '/Users/corey/Tmp/GB_video_data_numbers.csv'
+
+def datastack():
+    us_data = np.loadtxt(us_path,delimiter=',',dtype='int')
+    uk_data = np.loadtxt(uk_path,delimiter=',',dtype='int')
+    zeros = np.zeros((us_data.shape[0],1)).astype(int)
+    ones = np.ones((uk_data.shape[0],1)).astype(int)
+    print(us_data.shape[0])
+    print(uk_data.shape[0])
+    us_data = np.hstack((us_data,zeros))
+    uk_data = np.hstack((uk_data,ones))
+    final_data = np.vstack((us_data,uk_data))
+    print(final_data)
 
 def test():
     t1 = np.loadtxt(file_path, delimiter=',', dtype='int')
@@ -27,7 +41,8 @@ def test2():
 
 
 def main():
-    test2()
+    datastack()
+    #test2()
     # 布尔索引
     # t = np.arange(24).reshape(4, 6)
     # # 将t中小于10的数据设置成0
